@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d9b8ea8266ecc49acededa7d1804fc, type: 3}
   m_Name: TESTCARD
   m_EditorClassIdentifier: 
+  CardName: 
+  CardCost: 0
+  CardLevel: 0
+  CardDesc: 
+  CardDurability: 0
+  cColor: 0
+  cType: 0
+  cRarity: 0
