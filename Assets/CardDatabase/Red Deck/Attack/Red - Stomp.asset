@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d9b8ea8266ecc49acededa7d1804fc, type: 3}
   m_Name: Red - Stomp
   m_EditorClassIdentifier: 
-  CardName: Attack
+  CardName: Stomp
   CardCost: 1
   CardLevel: 1
   CardDurability: 5
   CardColor: 0
   CardType: 0
   CardRarity: 0
+  previousCard: {fileID: 0}
+  upgradedVersion: {fileID: 0}
   CardDesc: Deal 8 Damage.

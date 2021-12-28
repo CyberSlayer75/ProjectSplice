@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97d9b8ea8266ecc49acededa7d1804fc, type: 3}
-  m_Name: Red - Savage Feast
+  m_Name: Red - Daring Tradeoff
   m_EditorClassIdentifier: 
-  CardName: Savage Feast
+  CardName: Daring Tradeoff
   CardCost: 1
   CardLevel: 1
-  CardDurability: 5
+  CardDurability: 10
   CardColor: 0
-  CardType: 0
+  CardType: 1
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
