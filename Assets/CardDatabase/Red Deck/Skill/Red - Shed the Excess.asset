@@ -21,4 +21,5 @@ MonoBehaviour:
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Copy a card from your deck to your hand--it costs 0 Energy. Next turn,
+    take triple Damage. Exhaust.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red - Daring Tradeoff
   m_EditorClassIdentifier: 
   CardName: Daring Tradeoff
-  CardCost: 1
+  CardCost: 2
   CardLevel: 1
   CardDurability: 10
   CardColor: 0
@@ -21,4 +21,4 @@ MonoBehaviour:
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Swap Fracture with Bleed.

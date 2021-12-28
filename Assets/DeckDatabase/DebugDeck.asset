@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0556ad2bf0e1354e8bff0d79f32ecbf, type: 3}
   m_Name: DebugDeck
   m_EditorClassIdentifier: 
-  Cards: []
+  Cards:
+  - card: {fileID: 11400000, guid: a870022ff86e59045a0199fb18e67e8d, type: 2}
+  - card: {fileID: 11400000, guid: a870022ff86e59045a0199fb18e67e8d, type: 2}
+  - card: {fileID: 11400000, guid: a870022ff86e59045a0199fb18e67e8d, type: 2}
+  - card: {fileID: 11400000, guid: a870022ff86e59045a0199fb18e67e8d, type: 2}
+  - card: {fileID: 11400000, guid: c332d5cbe55aa3a4c96a158d05429bb9, type: 2}
+  - card: {fileID: 11400000, guid: c332d5cbe55aa3a4c96a158d05429bb9, type: 2}
+  - card: {fileID: 11400000, guid: c332d5cbe55aa3a4c96a158d05429bb9, type: 2}
+  - card: {fileID: 11400000, guid: 04ceb5f6694397247a6f852f6d788f7a, type: 2}
+  - card: {fileID: 11400000, guid: f7586bed912cac04183ad80aff0ebc33, type: 2}
+  - card: {fileID: 11400000, guid: 79f0e08416bb2c0448c8e027a6067bd3, type: 2}
