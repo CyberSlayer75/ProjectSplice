@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Deck : MonoBehaviour
+public class Deck
 {
     //public
     public string DeckName;
     public int CardsInDeck() => m_CardsInDeck.Count;
 
     //private
-    List<Card> m_CardsInDeck = new List<Card>();
+    [NaughtyAttributes.ReorderableList]
+    public List<Card> m_CardsInDeck = new List<Card>();
 
     /// <summary>
     /// Shuffle the cards in the deck
