@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d9b8ea8266ecc49acededa7d1804fc, type: 3}
   m_Name: Colorless - Power
   m_EditorClassIdentifier: 
-  CardName: Power
+  CardName: Power of Fifths
   CardCost: 1
   CardLevel: 1
   CardDurability: 5
@@ -21,4 +21,4 @@ MonoBehaviour:
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Every 5th Attack deals 5 Damage.
+  CardDesc: Every 5th Attack deals +5 Damage.

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Red - Instinct
   m_EditorClassIdentifier: 
   CardName: Instinct
-  CardCost: 1
+  CardCost: 2
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 3
   CardColor: 0
   CardType: 1
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Gain 5 Armor. Play the top card of your deck with no cost.

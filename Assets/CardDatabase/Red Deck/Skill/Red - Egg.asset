@@ -21,4 +21,4 @@ MonoBehaviour:
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Plant an egg. It hatches after 3 turns to Heal you for 15.

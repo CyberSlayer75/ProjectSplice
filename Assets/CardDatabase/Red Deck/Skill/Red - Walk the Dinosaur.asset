@@ -21,4 +21,4 @@ MonoBehaviour:
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Gain 8 Armor. Gain 1 Energy next turn.
