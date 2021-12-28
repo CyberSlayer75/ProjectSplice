@@ -26,8 +26,6 @@ public class Deck
             m_CardsInDeck[randomIndex] = temp;
         }
     }
-
-
     /// <summary>
     /// Draw cards from this deck
     /// </summary>
@@ -45,7 +43,6 @@ public class Deck
         }
         return drawnCards;
     }
-
     /// <summary>
     /// Adds cards to the Deck
     /// </summary>
@@ -57,7 +54,9 @@ public class Deck
             m_CardsInDeck.Add(newCards[i]);
         }
     }
-
+    /// <summary>
+    /// Debug Prints the contents of the deck
+    /// </summary>
     public void PrintDeck()
     {
         string s = "";

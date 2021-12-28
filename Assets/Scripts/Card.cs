@@ -17,4 +17,10 @@ public class Card
     {
         m_CardName = name;
     }
+    public Card(CardData d)
+    {
+        data = d;
+        m_CardName = d.CardName;
+        m_CardCost = d.CardCost;
+    }
 }

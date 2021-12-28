@@ -18,20 +18,31 @@ public class PlayerController : MonoBehaviour
     Deck m_Hand= new Deck();
     PlayerStats m_Stats;
 
+    //Debug
+    [NaughtyAttributes.HorizontalLine(color: NaughtyAttributes.EColor.Red)]
+    public DeckData debugDeck;
+
+
     private void Start()
     {
-        Card[] temp = new Card[20];
-        for(int i = 0; i < 20; i++)
+        Card[] temp = new Card[debugDeck.Cards.Count];
+        for(int i = 0; i < temp.Length; i++)
         {
-            temp[i] = new Card("Test Card: " + i.ToString());
+            temp[i] = new Card(debugDeck.Cards[i].card);
         }
         m_Deck.AddCardsToDeck(temp);
+        m_Deck.Shuffle();
         m_Deck.PrintDeck();
         DrawCards(5, DeckType.PlayerDeck, DeckType.PlayerHand);
         m_Deck.PrintDeck();
         m_Hand.PrintDeck();
     }
-
+    /// <summary>
+    /// Draw cards from one deck and put them in another
+    /// </summary>
+    /// <param name="numToDraw">How many cards should be moved</param>
+    /// <param name="from">Deck to take cards from</param>
+    /// <param name="to">Deck to put cards into</param>
     public void DrawCards(int numToDraw, DeckType from, DeckType to)
     {
         int leftOver = 0;
@@ -66,6 +77,11 @@ public class PlayerController : MonoBehaviour
             GetDeck(to).AddCardsToDeck(GetDeck(from).Draw(numToDraw));
         }
     }
+    
+    public void DiscardHand()
+    {
+        GetDeck(DeckType.PlayerGrave).AddCardsToDeck(GetDeck(DeckType.PlayerHand).Draw(GetDeck(DeckType.PlayerHand).CardsInDeck())); //Move all the cards in hand to the grave
+    }
 
     /// <summary>
     /// Get the deck we need
@@ -88,6 +104,17 @@ public class PlayerController : MonoBehaviour
         }
         return null;
     }
-    
-    
+
+    #region Debug
+    [NaughtyAttributes.Button]
+    public void DebugDiscardHand()
+    {
+        DiscardHand();
+    }
+    [NaughtyAttributes.Button]
+    public void DebugDraw()
+    {
+        DrawCards(3, DeckType.PlayerDeck, DeckType.PlayerHand);
+    }
+    #endregion
 }
