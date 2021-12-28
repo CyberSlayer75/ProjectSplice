@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d9b8ea8266ecc49acededa7d1804fc, type: 3}
+  m_Name: Colorless - Attack_Upgraded
+  m_EditorClassIdentifier: 
+  CardName: Attack
+  CardCost: 1
+  CardLevel: 2
+  CardDurability: 10
+  CardColor: 0
+  CardType: 0
+  CardRarity: 0
+  previousCard: {fileID: 11400000, guid: a870022ff86e59045a0199fb18e67e8d, type: 2}
+  upgradedVersion: {fileID: 0}
+  CardDesc: Deal 12 Damage.
