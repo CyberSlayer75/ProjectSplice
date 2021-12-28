@@ -21,4 +21,5 @@ MonoBehaviour:
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Deal 2 damage for each Bleed. At the end of your turn, remove all Bleed
+    from that enemy.

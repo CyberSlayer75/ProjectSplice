@@ -15,10 +15,10 @@ MonoBehaviour:
   CardName: Blinding Jab
   CardCost: 1
   CardLevel: 1
-  CardDurability: 5
+  CardDurability: 3
   CardColor: 0
   CardType: 0
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Deal 13 Damage. Stun the target if they have 10 Bleed.

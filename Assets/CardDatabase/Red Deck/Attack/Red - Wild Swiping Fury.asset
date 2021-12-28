@@ -15,10 +15,10 @@ MonoBehaviour:
   CardName: Wild Swiping Fury
   CardCost: 1
   CardLevel: 1
-  CardDurability: 5
+  CardDurability: 3
   CardColor: 0
   CardType: 0
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Attack every enemy for 4 Damage X times. Next turn, draw +X cards. Exhaust.

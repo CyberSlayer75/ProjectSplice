@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Red - Evolutionary Trait
   m_EditorClassIdentifier: 
   CardName: Evolutionary Trait
-  CardCost: 1
+  CardCost: 3
   CardLevel: 1
-  CardDurability: 5
+  CardDurability: 8
   CardColor: 0
   CardType: 0
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Deal 8 Damage, 2 Bleed, and 2 Fracture. This card costs 1 less.

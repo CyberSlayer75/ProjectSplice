@@ -21,4 +21,4 @@ MonoBehaviour:
   CardRarity: 2
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 8 Damage.
+  CardDesc: Heal 1 per Bleed caused.
