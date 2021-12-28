@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97d9b8ea8266ecc49acededa7d1804fc, type: 3}
-  m_Name: TESTCARD
+  m_Name: NoUpgrade
   m_EditorClassIdentifier: 
   CardName: 
   CardCost: 0
-  CardLevel: 0
-  CardDesc: 
+  CardLevel: 1
   CardDurability: 0
-  cColor: 0
-  cType: 0
-  cRarity: 0
+  CardColor: 0
+  CardType: 0
+  CardRarity: 0
+  previousCard: {fileID: 0}
+  upgradedVersion: {fileID: 0}
+  CardDesc: 

@@ -18,9 +18,10 @@ public class CardData : ScriptableObject
     public CRarity CardRarity;
     bool ShowPrev() { return CardLevel > 1; }
     [ShowIf("ShowPrev")]
+    [Dropdown("GetCards")]
     public CardData previousCard;
     [Dropdown("GetCards")]
-    public CardData upgradedVersion;
+    public CardData upgradedVersion = null;
     [ResizableTextArea]
     public string CardDesc;
 
@@ -32,7 +33,12 @@ public class CardData : ScriptableObject
         foreach (string g in guids)
         {
             CardData data = UnityEditor.AssetDatabase.LoadAssetAtPath<CardData>(UnityEditor.AssetDatabase.GUIDToAssetPath(g));
-            ListAsEnum.Add(data.name, data);
+            string p = UnityEditor.AssetDatabase.GetAssetPath(data);
+            string s = UnityEditor.AssetDatabase.GetAssetPath(data).Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries)[UnityEditor.AssetDatabase.GetAssetPath(data).Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries).Length - 3] + '/' +
+                UnityEditor.AssetDatabase.GetAssetPath(data).Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries)[UnityEditor.AssetDatabase.GetAssetPath(data).Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries).Length - 2] + '/' +
+               UnityEditor.AssetDatabase.GetAssetPath(data).Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries)[UnityEditor.AssetDatabase.GetAssetPath(data).Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries).Length - 1].Remove(
+                   UnityEditor.AssetDatabase.GetAssetPath(data).Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries)[UnityEditor.AssetDatabase.GetAssetPath(data).Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries).Length - 1].Length - 6, 6);
+            ListAsEnum.Add(s, data);
         }
         return ListAsEnum;
     }
