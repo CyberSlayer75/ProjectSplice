@@ -13,9 +13,9 @@ public class PlayerController : MonoBehaviour
     public PlayerStats Stats() => m_Stats;
     public enum DeckType {PlayerDeck, EnemyDeck, PlayerGrave, EnemyGrave, PlayerHand, EnemyHand };
     //Private
-    Deck m_Deck = new Deck();
-    Deck m_Grave = new Deck();
-    Deck m_Hand= new Deck();
+    Deck m_Deck = new Deck(DeckType.PlayerDeck);
+    Deck m_Grave = new Deck(DeckType.PlayerGrave);
+    Deck m_Hand= new Deck(DeckType.PlayerHand);
     PlayerStats m_Stats;
 
     //Debug
@@ -25,10 +25,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Card[] temp = new Card[debugDeck.Cards.Count];
+        UpdateCounts();
+        Deck.CardPackage[] temp = new Deck.CardPackage[debugDeck.Cards.Count];
         for(int i = 0; i < temp.Length; i++)
         {
-            temp[i] = new Card(debugDeck.Cards[i].card);
+            temp[i] = new Deck.CardPackage(new Card( debugDeck.Cards[i].card));
         }
         m_Deck.AddCardsToDeck(temp);
         m_Deck.Shuffle();
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         DrawCards(5, DeckType.PlayerDeck, DeckType.PlayerHand);
         m_Deck.PrintDeck();
         m_Hand.PrintDeck();
+        UpdateCounts();
     }
     /// <summary>
     /// Draw cards from one deck and put them in another
@@ -54,12 +56,21 @@ public class PlayerController : MonoBehaviour
             if (numToDraw > d.CardsInDeck())
             {
                 leftOver = numToDraw - d.CardsInDeck();
-                h.AddCardsToDeck(d.Draw(d.CardsInDeck()));//Get last cards from deck
+                int target = d.CardsInDeck();
+                for (int i = 0; i < target; i++)
+                {
+                    h.AddCardsToDeck(d.Draw(1));//Get last cards from deck
+                    UIManager.Instance.CreateCardOnDeckAndSendToHand(h, DeckType.PlayerDeck);
+                }
                 d.AddCardsToDeck(g.Draw(g.CardsInDeck()));//Shuffle graveyard back into Deck
                 d.Shuffle(); //Shuffle our deck
                 if (leftOver < d.CardsInDeck())
                 {
-                    h.AddCardsToDeck(d.Draw(leftOver));//Get remaining cards from deck
+                    for (int i = 0; i < leftOver; i++)//Get remaining cards from deck
+                    {
+                        h.AddCardsToDeck(d.Draw(1));
+                        UIManager.Instance.CreateCardOnDeckAndSendToHand(h, DeckType.PlayerDeck);
+                    }
                 }
                 else
                 {
@@ -68,7 +79,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                GetDeck(to).AddCardsToDeck(GetDeck(from).Draw(numToDraw));
+                for (int i = 0; i < numToDraw; i++)
+                {
+                    GetDeck(to).AddCardsToDeck(GetDeck(from).Draw(1));
+                    UIManager.Instance.CreateCardOnDeckAndSendToHand(GetDeck(to), DeckType.PlayerDeck);
+                }
             }
         }
         
@@ -76,12 +91,25 @@ public class PlayerController : MonoBehaviour
         {
             GetDeck(to).AddCardsToDeck(GetDeck(from).Draw(numToDraw));
         }
+        UpdateCounts();
     }
     
     public void DiscardHand()
     {
-        GetDeck(DeckType.PlayerGrave).AddCardsToDeck(GetDeck(DeckType.PlayerHand).Draw(GetDeck(DeckType.PlayerHand).CardsInDeck())); //Move all the cards in hand to the grave
+        int cardsToDiscard = GetDeck(DeckType.PlayerHand).CardsInDeck();
+        for (int i = 0; i < cardsToDiscard; i++)
+        {
+            GetDeck(DeckType.PlayerGrave).AddCardsToDeck(GetDeck(DeckType.PlayerHand).Draw(1)); //Move all the cards in hand to the grave
+            UIManager.Instance.SendCardFromHandToGrave(GetDeck(DeckType.PlayerGrave).m_CardsInDeck[GetDeck(DeckType.PlayerGrave).CardsInDeck() - 1].cardObj);
+        }
+        UpdateCounts();
     }
+
+    void UpdateCounts()
+    {
+        UIManager.Instance.UpdateDisplays(m_Deck.CardsInDeck(), m_Grave.CardsInDeck(), m_Hand.CardsInDeck());
+    }
+
 
     /// <summary>
     /// Get the deck we need
