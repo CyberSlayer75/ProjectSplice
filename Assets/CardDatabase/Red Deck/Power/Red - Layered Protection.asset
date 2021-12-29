@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Red - Layered Protection
   m_EditorClassIdentifier: 
   CardName: Layered Protection
-  CardCost: 1
+  CardCost: 2
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 5
   CardColor: 0
   CardType: 2
   CardRarity: 2
   previousCard: {fileID: 0}
-  upgradedVersion: {fileID: 0}
+  upgradedVersion: {fileID: 11400000, guid: fc0fad999de48c24f8b8a718b16fee0a, type: 2}
   CardDesc: Armor doesn't fade between turns.

@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Pack Protection
   CardCost: 1
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 5
   CardColor: 0
   CardType: 1
   CardRarity: 0

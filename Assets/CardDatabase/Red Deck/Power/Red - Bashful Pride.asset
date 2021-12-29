@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Red - Bashful Pride
   m_EditorClassIdentifier: 
   CardName: Bashful Pride
-  CardCost: 1
+  CardCost: 2
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 6
   CardColor: 0
   CardType: 2
   CardRarity: 1
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Skill used will cause 1 Fracture to all enemies.
+  CardDesc: Skill used will apply 1 Fracture to all enemies.

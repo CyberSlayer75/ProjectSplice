@@ -18,7 +18,7 @@ MonoBehaviour:
   CardDurability: 3
   CardColor: 3
   CardType: 2
-  CardRarity: 0
+  CardRarity: 1
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: When you play 3 cards in one turn, deal 3 Damage to all enemies. Exhaust.
+  CardDesc: When you play 3 cards in one turn, deal 3 Damage to all enemies.

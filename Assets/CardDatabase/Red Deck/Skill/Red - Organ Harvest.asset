@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Red - Organ Harvest
   m_EditorClassIdentifier: 
   CardName: Organ Harvest
-  CardCost: 1
+  CardCost: 2
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 8
   CardColor: 0
   CardType: 1
-  CardRarity: 0
+  CardRarity: 1
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
   CardDesc: Remove all Bleed. Heal 2 for each Bleed removed this way.

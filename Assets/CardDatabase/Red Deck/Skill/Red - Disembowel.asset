@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Red - Disembowel
   m_EditorClassIdentifier: 
   CardName: Deisembowel
-  CardCost: 2
+  CardCost: 3
   CardLevel: 1
   CardDurability: 4
   CardColor: 0
   CardType: 1
-  CardRarity: 0
+  CardRarity: 2
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
   CardDesc: Double Bleed stacks on all enemies. Exhaust.

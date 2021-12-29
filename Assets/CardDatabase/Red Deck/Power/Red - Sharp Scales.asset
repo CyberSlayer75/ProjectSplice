@@ -15,10 +15,10 @@ MonoBehaviour:
   CardName: Sharp Scales
   CardCost: 1
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 8
   CardColor: 0
   CardType: 2
   CardRarity: 1
   previousCard: {fileID: 0}
-  upgradedVersion: {fileID: 0}
+  upgradedVersion: {fileID: 11400000, guid: fd9e92fc17b5190479493b3d72e2743d, type: 2}
   CardDesc: Apply 1 Bleed when you take damage.

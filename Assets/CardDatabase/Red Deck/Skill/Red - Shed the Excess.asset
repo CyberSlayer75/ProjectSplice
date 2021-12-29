@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Red - Shed the Excess
   m_EditorClassIdentifier: 
   CardName: Shed the Excess
-  CardCost: 1
+  CardCost: 3
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 6
   CardColor: 0
   CardType: 1
   CardRarity: 0
   previousCard: {fileID: 0}
-  upgradedVersion: {fileID: 0}
+  upgradedVersion: {fileID: 11400000, guid: fc7a5b14b5be4d549abc6eec69a1a5a8, type: 2}
   CardDesc: Copy a card from your deck to your hand--it costs 0 Energy. Next turn,
-    take triple Damage. Exhaust.
+    take 3X Damage. Exhaust.

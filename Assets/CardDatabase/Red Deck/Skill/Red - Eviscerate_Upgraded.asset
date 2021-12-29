@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d9b8ea8266ecc49acededa7d1804fc, type: 3}
+  m_Name: Red - Eviscerate_Upgraded
+  m_EditorClassIdentifier: 
+  CardName: Eviscerate+
+  CardCost: 1
+  CardLevel: 2
+  CardDurability: 10
+  CardColor: 0
+  CardType: 1
+  CardRarity: 0
+  previousCard: {fileID: 11400000, guid: aa1566139e3018d468ab3fd035638168, type: 2}
+  upgradedVersion: {fileID: 0}
+  CardDesc: Apply 4 Bleed.

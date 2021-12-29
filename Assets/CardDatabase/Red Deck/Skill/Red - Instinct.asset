@@ -18,7 +18,7 @@ MonoBehaviour:
   CardDurability: 3
   CardColor: 0
   CardType: 1
-  CardRarity: 0
+  CardRarity: 1
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
   CardDesc: Gain 5 Armor. Play the top card of your deck with no cost.

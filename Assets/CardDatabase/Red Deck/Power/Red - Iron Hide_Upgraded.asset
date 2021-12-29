@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d9b8ea8266ecc49acededa7d1804fc, type: 3}
+  m_Name: Red - Iron Hide_Upgraded
+  m_EditorClassIdentifier: 
+  CardName: Iron Hide+
+  CardCost: 1
+  CardLevel: 2
+  CardDurability: 8
+  CardColor: 0
+  CardType: 2
+  CardRarity: 1
+  previousCard: {fileID: 11400000, guid: 2c05e0277ba2f044e8c68416af2790b4, type: 2}
+  upgradedVersion: {fileID: 0}
+  CardDesc: Apply 3 Fracture when you block all damage this turn with Armor.

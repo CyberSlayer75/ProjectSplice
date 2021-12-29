@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Red - Blood Feast
   m_EditorClassIdentifier: 
   CardName: Blood Feast
-  CardCost: 1
+  CardCost: 2
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 5
   CardColor: 0
   CardType: 2
   CardRarity: 2
   previousCard: {fileID: 0}
-  upgradedVersion: {fileID: 0}
-  CardDesc: Heal 1 per Bleed caused.
+  upgradedVersion: {fileID: 11400000, guid: 71d94dae3296c7a4687aa8768a42e30f, type: 2}
+  CardDesc: Heal 1 HP per Bleed caused.

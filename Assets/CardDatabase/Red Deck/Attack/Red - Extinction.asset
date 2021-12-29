@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Red - Extinction
   m_EditorClassIdentifier: 
   CardName: Extinction
-  CardCost: 1
+  CardCost: 3
   CardLevel: 1
-  CardDurability: 5
+  CardDurability: 3
   CardColor: 0
   CardType: 0
-  CardRarity: 0
+  CardRarity: 2
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 50 Damage to everyone. Take 35 Damage.
+  CardDesc: Deal 50 Damage to everyone. Take 35 Damage. Exhaust.

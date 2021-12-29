@@ -15,10 +15,10 @@ MonoBehaviour:
   CardName: Prowler's Chance
   CardCost: 2
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 3
   CardColor: 0
   CardType: 1
   CardRarity: 0
   previousCard: {fileID: 0}
-  upgradedVersion: {fileID: 0}
-  CardDesc: Discard 1 card. Cause 5 Bleed and 3 Fracture.
+  upgradedVersion: {fileID: 11400000, guid: 89bde6249586dc549b6eafe15bb41aac, type: 2}
+  CardDesc: Discard X cards. Cause 2X Bleed and 3 Fracture.

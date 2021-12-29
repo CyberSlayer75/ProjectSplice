@@ -21,4 +21,4 @@ MonoBehaviour:
   CardRarity: 0
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
-  CardDesc: Deal 6 Damage. Cause 2 Fracture.
+  CardDesc: Deal 6 Damage. Apply 2 Fracture.

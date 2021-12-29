@@ -15,10 +15,10 @@ MonoBehaviour:
   CardName: Iron Hide
   CardCost: 1
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 6
   CardColor: 0
   CardType: 2
   CardRarity: 1
   previousCard: {fileID: 0}
-  upgradedVersion: {fileID: 0}
-  CardDesc: Apply 1 Fracture when you take damage.
+  upgradedVersion: {fileID: 11400000, guid: f060945ecefa9124589ee08b0babbbbc, type: 2}
+  CardDesc: Apply 2 Fracture when you block all damage this turn with Armor.

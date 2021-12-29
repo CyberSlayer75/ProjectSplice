@@ -18,7 +18,7 @@ MonoBehaviour:
   CardDurability: 10
   CardColor: 0
   CardType: 1
-  CardRarity: 0
+  CardRarity: 1
   previousCard: {fileID: 0}
   upgradedVersion: {fileID: 0}
   CardDesc: Remove all Fracture. Deal 2 Damage per Fracture removed.

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Red - Frog D.N.A.
   m_EditorClassIdentifier: 
   CardName: Frog D.N.A.
-  CardCost: 1
+  CardCost: 0
   CardLevel: 1
-  CardDurability: 10
+  CardDurability: 7
   CardColor: 0
   CardType: 1
   CardRarity: 0
