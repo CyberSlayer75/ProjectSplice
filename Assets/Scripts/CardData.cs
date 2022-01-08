@@ -24,7 +24,8 @@ public class CardData : ScriptableObject
     public CardData upgradedVersion = null;
     [ResizableTextArea]
     public string CardDesc;
-
+    [AllowNesting]
+    public List<CardEffects> CardEffects;
 
     private DropdownList<CardData> GetCards()
     {

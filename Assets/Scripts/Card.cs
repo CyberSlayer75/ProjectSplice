@@ -26,4 +26,10 @@ public class Card
         m_CardCost = d.CardCost;
         m_CardDesc = d.CardDesc;
     }
+
+    public bool PlayCard()
+    {
+
+        return false;//unable to play the card
+    }
 }
