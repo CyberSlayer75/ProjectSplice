@@ -7,16 +7,19 @@ public class PlayerController : MonoBehaviour
 {
     //Public
     public string PlayerName;
+    public bool PlayerControlled = false;
     public Deck Deck() => m_Deck;
     public Deck Grave() => m_Grave;
     public Deck Hand() => m_Hand;
     public PlayerStats Stats() => m_Stats;
     public enum DeckType {PlayerDeck, EnemyDeck, PlayerGrave, EnemyGrave, PlayerHand, EnemyHand };
+
     //Private
-    Deck m_Deck = new Deck(DeckType.PlayerDeck);
-    Deck m_Grave = new Deck(DeckType.PlayerGrave);
-    Deck m_Hand= new Deck(DeckType.PlayerHand);
-    PlayerStats m_Stats;
+    Deck m_Deck;
+    Deck m_Grave;
+    Deck m_Hand;
+    [NaughtyAttributes.HorizontalLine(color: NaughtyAttributes.EColor.Green)]
+    public PlayerStats m_Stats;
 
     //Debug
     [NaughtyAttributes.HorizontalLine(color: NaughtyAttributes.EColor.Red)]
@@ -25,20 +28,28 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        m_Stats = new PlayerStats();
+        CreateDeck();
         UpdateCounts();
+        DrawCards(5, DeckType.PlayerDeck, DeckType.PlayerHand);
+        UpdateCounts();
+    }
+
+    public void CreateDeck()
+    {
+        m_Deck = new Deck(DeckType.PlayerDeck, this);
+        m_Grave = new Deck(DeckType.PlayerGrave, this);
+        m_Hand = new Deck(DeckType.PlayerHand, this);
+
         Deck.CardPackage[] temp = new Deck.CardPackage[debugDeck.Cards.Count];
-        for(int i = 0; i < temp.Length; i++)
+        for (int i = 0; i < temp.Length; i++)
         {
-            temp[i] = new Deck.CardPackage(new Card( debugDeck.Cards[i].card));
+            temp[i] = new Deck.CardPackage(new Card(debugDeck.Cards[i].card, this));
         }
         m_Deck.AddCardsToDeck(temp);
         m_Deck.Shuffle();
-        m_Deck.PrintDeck();
-        DrawCards(5, DeckType.PlayerDeck, DeckType.PlayerHand);
-        m_Deck.PrintDeck();
-        m_Hand.PrintDeck();
-        UpdateCounts();
     }
+
     /// <summary>
     /// Draw cards from one deck and put them in another
     /// </summary>

@@ -9,14 +9,16 @@ public class Deck
     public string DeckName;
     public int CardsInDeck() => m_CardsInDeck.Count;
     public PlayerController.DeckType deckType;
-
+    public PlayerController DeckOwner() => deckOwner;
     //private
+    PlayerController deckOwner;
     [NaughtyAttributes.ReorderableList]
     public List<CardPackage> m_CardsInDeck = new List<CardPackage>();
 
-    public Deck(PlayerController.DeckType t)
+    public Deck(PlayerController.DeckType t, PlayerController pc)
     {
         deckType = t;
+        deckOwner = pc;
         DeckName = t.ToString();
     }
 
@@ -82,6 +84,7 @@ public class Deck
     {
         public Card card;
         public GameObject cardObj;
+
         public CardPackage(Card c)
         {
             card = c;

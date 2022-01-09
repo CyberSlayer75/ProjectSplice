@@ -27,6 +27,10 @@ public class CardData : ScriptableObject
     [AllowNesting]
     public List<CardEffects> CardEffects;
 
+    //Public but hidden
+    [HideInInspector]
+    public int CurrentCardCost;
+
     private DropdownList<CardData> GetCards()
     {
         string[] guids = UnityEditor.AssetDatabase.FindAssets("t:CardData", new string[] { "Assets/CardDatabase" });

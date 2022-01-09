@@ -13,7 +13,9 @@ public class UIManager : MonoBehaviour
     public GameObject deckContainer;
     public GameObject graveContainer;
     public GameObject cardPrefab;
-    
+    public RectTransform playZone;
+    [HideInInspector]
+    public Canvas canvas;
 
     //Private
     List<GameObject> CardsInHandObjs = new List<GameObject>();
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
             Instance = this;
             deckCount = deckContainer.GetComponentInChildren<TextMeshProUGUI>();
             graveCount = graveContainer.GetComponentInChildren<TextMeshProUGUI>();
+            canvas = GetComponent<Canvas>();
         }
         else
         {
@@ -38,13 +41,18 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(Input.mousePosition);
     }
 
     public void UpdateDisplays(int deckNum, int graveNum, int handNum)
     {
         deckCount.text = deckNum.ToString();
         graveCount.text = graveNum.ToString();
+    }
+
+    public bool isCardInPlayZone(Vector2 pos)
+    {
+        return playZone.rect.Contains(pos);
     }
     
     public void CreateCardOnDeckAndSendToHand(Deck deckToAddTo, PlayerController.DeckType deckToDrawFrom)
