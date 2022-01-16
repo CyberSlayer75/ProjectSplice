@@ -151,6 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Enemy Player
+  PlayerControlled: 0
+  m_Stats:
+    m_PlayerHealth: 50
+    m_PlayerEnergy: 5
   debugDeck: {fileID: 11400000, guid: 2fcd1dc8c4de70d4986281e5742eb37d, type: 2}
 --- !u!4 &17183228
 Transform:
@@ -195,7 +199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d720f46332f493c46a8340cb1e7ee7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activePlayers: []
+  activePlayers:
+  - {fileID: 1551877833}
+  - {fileID: 17183227}
 --- !u!4 &89550137
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,6 +1780,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Hero Player
+  PlayerControlled: 1
+  m_Stats:
+    m_PlayerHealth: 50
+    m_PlayerEnergy: 5
   debugDeck: {fileID: 11400000, guid: 2fcd1dc8c4de70d4986281e5742eb37d, type: 2}
 --- !u!4 &1551877834
 Transform:
