@@ -6,6 +6,7 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance = null;
     public List<PlayerController> activePlayers;
+    
 
     private void Awake()
     {
@@ -50,5 +51,15 @@ public class BattleManager : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public PlayerController GetPlayerController()
+    {
+        foreach(PlayerController p in activePlayers)
+        {
+            if (p.PlayerControlled)
+                return p;
+        }
+        return null;
     }
 }

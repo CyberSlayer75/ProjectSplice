@@ -58,7 +58,22 @@ public class PlayerStats
     {
         m_PlayerHealth += amount;
     }
-
+    public void SetHealth(int amount)
+    {
+        m_PlayerHealth = amount;
+    }
+    public void GainEnergy(int amount)
+    {
+        m_PlayerEnergy += amount;
+    }
+    public void LoseEnergy(int amount)
+    {
+        m_PlayerEnergy -= amount;
+    }
+    public void SetEnergy(int amount)
+    {
+        m_PlayerEnergy = amount;
+    }
     public void GainBuff(BuffStatus buff, int amountToGain)
     {
         int check;

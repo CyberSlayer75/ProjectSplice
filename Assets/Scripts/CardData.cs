@@ -31,6 +31,11 @@ public class CardData : ScriptableObject
     [HideInInspector]
     public int CurrentCardCost;
 
+    public void InitializeStartingCurrentValues()
+    {
+        CurrentCardCost = CardCost;
+    }
+
     private DropdownList<CardData> GetCards()
     {
         string[] guids = UnityEditor.AssetDatabase.FindAssets("t:CardData", new string[] { "Assets/CardDatabase" });

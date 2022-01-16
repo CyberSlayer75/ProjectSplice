@@ -15,7 +15,14 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     //private
     Card myCard;
     Transform originalParent;
-    
+    Canvas cardCanvas;
+
+
+    private void Awake()
+    {
+        cardCanvas = GetComponent<Canvas>();
+    }
+
     /// <summary>
     /// Set the info on this card 
     /// </summary>
@@ -67,7 +74,14 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         if (UIManager.Instance.isCardInPlayZone(this.transform.localPosition))
         {
-            this.myCard.PlayCard();
+            if (this.myCard.PlayCard())//If we successfully played it
+            {
+                UIManager.Instance.SendCardToGrave(this.gameObject);
+            }
+            else //If we couldn't play the card then return it to our hand
+            {
+                UIManager.Instance.SendCardToHand(this.gameObject);
+            }
         }
         else
         {
@@ -78,11 +92,17 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        this.transform.localScale = Vector3.one * 1.5f;
+        this.transform.localPosition += Vector3.up * 50f;
+        cardCanvas.sortingOrder = 10;
         //throw new System.NotImplementedException();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        this.transform.localScale = Vector3.one;
+        this.transform.localPosition += Vector3.down * 50f;
+        cardCanvas.sortingOrder = 0;
         //throw new System.NotImplementedException();
     }
 }

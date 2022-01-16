@@ -40,6 +40,7 @@ public class Card
     public Card(CardData d, PlayerController pc)
     {
         data = d;
+        data.InitializeStartingCurrentValues();
         m_CardName = d.CardName;
         m_CardCost = d.CardCost;
         m_CardDesc = d.CardDesc;
@@ -48,6 +49,7 @@ public class Card
     }
     public bool PlayCard()
     {
+        bool cardPlayed = false;
         if (data.CurrentCardCost > currentOwner.Stats().Energy())
             return false; //Not enough energy to play
         for(int i = 0; i < data.CardEffects.Count; i++)
@@ -67,8 +69,9 @@ public class Card
                 if (!conditionMet) //Stop with this effect because we didn't meet the condition
                     break;
             }
+            cardPlayed = true;
             //This is where we apply statuses and damage
-            foreach(PlayerController pc in targets)
+            foreach (PlayerController pc in targets)
             {
                 if (data.CardEffects[i].damage > 0) //Player Takes Damage
                 {
@@ -99,7 +102,12 @@ public class Card
                 //TODO: This is where unique buffs will go
             }
         }
-        return false;//unable to play the card
+       if(cardPlayed)
+        {
+            currentOwner.Stats().LoseEnergy(data.CurrentCardCost);
+        }
+
+        return cardPlayed;
     }
     public List<PlayerController> GetTargets(CardEffects.TargetingType tar)
     {

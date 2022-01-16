@@ -20,5 +20,47 @@ MonoBehaviour:
   CardType: 0
   CardRarity: 0
   previousCard: {fileID: 0}
-  upgradedVersion: {fileID: 0}
+  upgradedVersion: {fileID: 11400000, guid: bba5e34d441dd8c4fafabdf4af77b595, type: 2}
   CardDesc: Deal 8 Damage.
+  CardEffects:
+  - target: 3
+    conditional: 0
+    conditionalStatement:
+      conditionTarget: 0
+      condition: 0
+      countOf: 0
+      conTarget: 0
+      buffStatus: 0
+      debuffStatus: 0
+      uniqueStatus: 0
+    damageType: 1
+    damage: 10
+    damageMod:
+      modType: 0
+      amountType: 0
+      modAmount: 0
+      modConditional: 0
+      conditionalStatement:
+        conditionTarget: 0
+        condition: 0
+        countOf: 0
+        conTarget: 0
+        buffStatus: 0
+        debuffStatus: 0
+        uniqueStatus: 0
+    cardMod:
+      modType: 0
+      amountType: 0
+      modAmount: 0
+      modConditional: 0
+      conditionalStatement:
+        conditionTarget: 0
+        condition: 0
+        countOf: 0
+        conTarget: 0
+        buffStatus: 0
+        debuffStatus: 0
+        uniqueStatus: 0
+    debuffs: []
+    buffs: []
+  CurrentCardCost: 0

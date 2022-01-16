@@ -29,10 +29,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         m_Stats = new PlayerStats();
-        CreateDeck();
-        UpdateCounts();
+        CreateDeck(); if (PlayerControlled)
+            UIManager.Instance.UpdateDisplays();
         DrawCards(5, DeckType.PlayerDeck, DeckType.PlayerHand);
-        UpdateCounts();
+        if (PlayerControlled)
+            UIManager.Instance.UpdateDisplays();
     }
 
     public void CreateDeck()
@@ -71,7 +72,10 @@ public class PlayerController : MonoBehaviour
                 for (int i = 0; i < target; i++)
                 {
                     h.AddCardsToDeck(d.Draw(1));//Get last cards from deck
-                    UIManager.Instance.CreateCardOnDeckAndSendToHand(h, DeckType.PlayerDeck);
+                    if (PlayerControlled) //If we are a player then we need to physically make the cards and put them on the UI
+                        UIManager.Instance.CreateCardOnDeckAndSendToHand(h, DeckType.PlayerDeck);
+                    else //If we are an enemy then we want to make them behind the scenes
+                        UIManager.Instance.CreateCardFromDeckAndSendToHandEnemy(h);
                 }
                 d.AddCardsToDeck(g.Draw(g.CardsInDeck()));//Shuffle graveyard back into Deck
                 d.Shuffle(); //Shuffle our deck
@@ -80,7 +84,10 @@ public class PlayerController : MonoBehaviour
                     for (int i = 0; i < leftOver; i++)//Get remaining cards from deck
                     {
                         h.AddCardsToDeck(d.Draw(1));
-                        UIManager.Instance.CreateCardOnDeckAndSendToHand(h, DeckType.PlayerDeck);
+                        if (PlayerControlled) //If we are a player then we need to physically make the cards and put them on the UI
+                            UIManager.Instance.CreateCardOnDeckAndSendToHand(h, DeckType.PlayerDeck);
+                        else //If we are an enemy then we want to make them behind the scenes
+                            UIManager.Instance.CreateCardFromDeckAndSendToHandEnemy(h);
                     }
                 }
                 else
@@ -93,7 +100,10 @@ public class PlayerController : MonoBehaviour
                 for (int i = 0; i < numToDraw; i++)
                 {
                     GetDeck(to).AddCardsToDeck(GetDeck(from).Draw(1));
-                    UIManager.Instance.CreateCardOnDeckAndSendToHand(GetDeck(to), DeckType.PlayerDeck);
+                    if (PlayerControlled) //If we are a player then we need to physically make the cards and put them on the UI
+                        UIManager.Instance.CreateCardOnDeckAndSendToHand(GetDeck(to), DeckType.PlayerDeck);
+                    else //If we are an enemy then we want to make them behind the scenes
+                        UIManager.Instance.CreateCardFromDeckAndSendToHandEnemy(GetDeck(to));
                 }
             }
         }
@@ -102,7 +112,8 @@ public class PlayerController : MonoBehaviour
         {
             GetDeck(to).AddCardsToDeck(GetDeck(from).Draw(numToDraw));
         }
-        UpdateCounts();
+        if (PlayerControlled)
+            UIManager.Instance.UpdateDisplays();
     }
     
     public void DiscardHand()
@@ -111,16 +122,11 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < cardsToDiscard; i++)
         {
             GetDeck(DeckType.PlayerGrave).AddCardsToDeck(GetDeck(DeckType.PlayerHand).Draw(1)); //Move all the cards in hand to the grave
-            UIManager.Instance.SendCardFromHandToGrave(GetDeck(DeckType.PlayerGrave).m_CardsInDeck[GetDeck(DeckType.PlayerGrave).CardsInDeck() - 1].cardObj);
+            UIManager.Instance.SendCardToGrave(GetDeck(DeckType.PlayerGrave).m_CardsInDeck[GetDeck(DeckType.PlayerGrave).CardsInDeck() - 1].cardObj);
         }
-        UpdateCounts();
+        if (PlayerControlled)
+            UIManager.Instance.UpdateDisplays();
     }
-
-    void UpdateCounts()
-    {
-        UIManager.Instance.UpdateDisplays(m_Deck.CardsInDeck(), m_Grave.CardsInDeck(), m_Hand.CardsInDeck());
-    }
-
 
     /// <summary>
     /// Get the deck we need

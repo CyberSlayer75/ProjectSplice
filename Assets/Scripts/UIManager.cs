@@ -9,18 +9,25 @@ public class UIManager : MonoBehaviour
     //Singleton
     public static UIManager Instance = null;
     //public
+    [Header("General")]
+    public RectTransform playZone;
+    [Header("Player Zone")]
     public GameObject handContainer;
     public GameObject deckContainer;
     public GameObject graveContainer;
     public GameObject cardPrefab;
-    public RectTransform playZone;
+    public GameObject energyContainer;
+   
     [HideInInspector]
     public Canvas canvas;
-
+    [Header("Enemy Zone")]
+    public GameObject EnemyZone;
+    public GameObject enemyCardPrefab;
     //Private
     List<GameObject> CardsInHandObjs = new List<GameObject>();
     TextMeshProUGUI deckCount;
     TextMeshProUGUI graveCount;
+    TextMeshProUGUI energyCount;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,6 +37,7 @@ public class UIManager : MonoBehaviour
             Instance = this;
             deckCount = deckContainer.GetComponentInChildren<TextMeshProUGUI>();
             graveCount = graveContainer.GetComponentInChildren<TextMeshProUGUI>();
+            energyCount = energyContainer.GetComponentInChildren<TextMeshProUGUI>();
             canvas = GetComponent<Canvas>();
         }
         else
@@ -42,12 +50,17 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         //Debug.Log(Input.mousePosition);
+        UpdateDisplays();
     }
 
-    public void UpdateDisplays(int deckNum, int graveNum, int handNum)
+    public void UpdateDisplays()
     {
-        deckCount.text = deckNum.ToString();
-        graveCount.text = graveNum.ToString();
+        if (BattleManager.Instance.GetPlayerController() != null)
+        {
+            deckCount.text = BattleManager.Instance.GetPlayerController().Deck().CardsInDeck().ToString();
+            graveCount.text = BattleManager.Instance.GetPlayerController().Grave().CardsInDeck().ToString();
+            energyCount.text = BattleManager.Instance.GetPlayerController().Stats().Energy().ToString();
+        }
     }
 
     public bool isCardInPlayZone(Vector2 pos)
@@ -69,13 +82,30 @@ public class UIManager : MonoBehaviour
         }
         //populate card
         deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj.GetComponent<CardDisplay>().SetCard(deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].card);
-        StartCoroutine(MoveCardToHand(deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj, .5f)); //Send the latest card we added to the hand list to the hand
-
+        SendCardToHand(deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj);
     }
-    
-    public void SendCardFromHandToGrave(GameObject card)
+    /// <summary>
+    /// Similar to CreateCardOnDeckAndSendToHand, except we make an invisible card the the enemy has behind the scenes
+    /// </summary>
+    /// <param name="deckToAddTo"></param>
+    /// <param name="deckToDrawFrom"></param>
+    public void CreateCardFromDeckAndSendToHandEnemy(Deck deckToAddTo)
+    {
+        //Since we are always adding the lastest to the deck, the index will always be the deck size
+        deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj = (Instantiate(enemyCardPrefab, EnemyZone.transform.position, Quaternion.identity, EnemyZone.transform));
+        
+        //populate card
+        deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj.GetComponent<CardDisplay>().SetCard(deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].card);
+    }
+
+    public void SendCardToGrave(GameObject card)
     {
         StartCoroutine(MoveCardToGrave(card, 1f));
+    }
+
+    public void SendCardToHand(GameObject card)
+    {
+        StartCoroutine(MoveCardToHand(card, .5f)); //Send the latest card we added to the hand list to the hand
     }
 
     IEnumerator MoveCardToHand(GameObject card, float time)
