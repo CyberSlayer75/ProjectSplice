@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class Deck
@@ -78,6 +79,36 @@ public class Deck
             s += m_CardsInDeck[i].card.Name() + "\n";
         }
         Debug.Log(s);
+    }
+
+    public void RemoveCardByIndex(int cardToRemove)
+    {
+        m_CardsInDeck.RemoveAt(cardToRemove);
+        m_CardsInDeck = m_CardsInDeck.Where(x => x != null).ToList();
+    }
+
+    public void RemoveCardByReference(GameObject cardToRemove)
+    {
+        for(int i = 0; i < m_CardsInDeck.Count; i++)
+        {
+            if(GameObject.ReferenceEquals(m_CardsInDeck[i].cardObj, cardToRemove))
+            {
+                RemoveCardByIndex(i);
+                return;
+            }
+        }
+    }
+
+    public CardPackage FindCardByObjReference(GameObject cardRef)
+    {
+        for (int i = 0; i < m_CardsInDeck.Count; i++)
+        {
+            if (GameObject.ReferenceEquals(m_CardsInDeck[i].cardObj, cardRef))
+            {
+                return m_CardsInDeck[i];
+            }
+        }
+        return null;
     }
 
     public class CardPackage

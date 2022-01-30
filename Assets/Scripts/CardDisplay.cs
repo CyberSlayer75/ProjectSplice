@@ -72,11 +72,14 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (UIManager.Instance.isCardInPlayZone(this.transform.localPosition))
+        if (UIManager.Instance.isCardInPlayZone(this.transform.localPosition) && BattleManager.Instance.IsThisPlayersTurn(this.myCard.currentOwner))
         {
             if (this.myCard.PlayCard())//If we successfully played it
             {
+                //TODO: Know if this card is being played from the hand or somewhere else
+                this.myCard.currentOwner.Grave().AddCardsToDeck(new Deck.CardPackage[] { this.myCard.currentOwner.Hand().FindCardByObjReference(this.gameObject) }); //Remove the card from the hand in the backend
                 UIManager.Instance.SendCardToGrave(this.gameObject);
+                this.myCard.currentOwner.Hand().RemoveCardByReference(this.gameObject);
             }
             else //If we couldn't play the card then return it to our hand
             {

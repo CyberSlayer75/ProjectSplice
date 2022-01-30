@@ -19,14 +19,16 @@ public class PlayerStats
     //private
     public int m_PlayerHealth;
     public int m_PlayerEnergy;
+    private PlayerController playerRef;
 
-    public PlayerStats()
+    public PlayerStats(PlayerController pc)
     {
         buffStatuses = new Dictionary<BuffStatus, int>();
         debuffStatuses = new Dictionary<DebuffStatus, int>();
         uniqueStatuses = new Dictionary<UniqueStatus, int>();
         m_PlayerHealth = 50;
         m_PlayerEnergy = 5;
+        playerRef = pc;
     }
 
     public int ReturnBuffStatus(BuffStatus s)
@@ -53,6 +55,8 @@ public class PlayerStats
     public void TakeDamage(int amount)
     {
         m_PlayerHealth -= amount;
+        if (m_PlayerHealth <= 0)
+            BattleManager.Instance.RemovePlayer(playerRef);
     }
     public void HealDamage(int amount)
     {

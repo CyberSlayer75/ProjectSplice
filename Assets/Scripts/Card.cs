@@ -109,6 +109,7 @@ public class Card
 
         return cardPlayed;
     }
+
     public List<PlayerController> GetTargets(CardEffects.TargetingType tar)
     {
         List<PlayerController> targets = new List<PlayerController>(); //Get the targets of the card

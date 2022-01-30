@@ -17,7 +17,8 @@ public class UIManager : MonoBehaviour
     public GameObject graveContainer;
     public GameObject cardPrefab;
     public GameObject energyContainer;
-   
+    public TextMeshProUGUI conclusionScreen;
+
     [HideInInspector]
     public Canvas canvas;
     [Header("Enemy Zone")]
@@ -75,9 +76,11 @@ public class UIManager : MonoBehaviour
         {
             case PlayerController.DeckType.PlayerDeck:
                 deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() -1].cardObj = (Instantiate(cardPrefab, deckContainer.transform.position, Quaternion.identity, this.transform));
+                deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj.name = deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].card.Name() + Time.timeSinceLevelLoad;
                 break;
             case PlayerController.DeckType.PlayerGrave:
                 deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() -1].cardObj = (Instantiate(cardPrefab, graveContainer.transform.position, Quaternion.identity, this.transform));
+                deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj.name = deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].card.Name() + Time.timeSinceLevelLoad;
                 break;
         }
         //populate card
@@ -93,7 +96,7 @@ public class UIManager : MonoBehaviour
     {
         //Since we are always adding the lastest to the deck, the index will always be the deck size
         deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj = (Instantiate(enemyCardPrefab, EnemyZone.transform.position, Quaternion.identity, EnemyZone.transform));
-        
+        deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj.name = deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].card.Name() + Time.timeSinceLevelLoad;
         //populate card
         deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].cardObj.GetComponent<CardDisplay>().SetCard(deckToAddTo.m_CardsInDeck[deckToAddTo.CardsInDeck() - 1].card);
     }
@@ -135,4 +138,23 @@ public class UIManager : MonoBehaviour
         DestroyImmediate(card);
         yield return null;
     }
+
+    public void EndTurnBtn()
+    {
+        if (BattleManager.Instance.currentPlayerTurn.PlayerControlled)
+        {
+            BattleManager.Instance.currentPlayerTurn.DiscardHand();
+            BattleManager.Instance.EndPlayerTurn();
+        }
+    }
+
+    public void DisplayConclusion(bool playerWon)
+    {
+        if (playerWon)
+            conclusionScreen.text = "YOU WON!";
+        else
+            conclusionScreen.text = "YOU LOST!";
+        conclusionScreen.enabled = true;
+    }
+
 }

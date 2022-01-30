@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     Deck m_Hand;
     [NaughtyAttributes.HorizontalLine(color: NaughtyAttributes.EColor.Green)]
     public PlayerStats m_Stats;
+    public AIBrain AI;
 
     //Debug
     [NaughtyAttributes.HorizontalLine(color: NaughtyAttributes.EColor.Red)]
@@ -28,12 +29,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        m_Stats = new PlayerStats();
-        CreateDeck(); if (PlayerControlled)
-            UIManager.Instance.UpdateDisplays();
-        DrawCards(5, DeckType.PlayerDeck, DeckType.PlayerHand);
-        if (PlayerControlled)
-            UIManager.Instance.UpdateDisplays();
+        m_Stats = new PlayerStats(this);
+        CreateDeck();
+        //if (PlayerControlled)
+        //    UIManager.Instance.UpdateDisplays();
+        //DrawCards(5, DeckType.PlayerDeck, DeckType.PlayerHand);
+        //if (PlayerControlled)
+        //    UIManager.Instance.UpdateDisplays();
     }
 
     public void CreateDeck()
@@ -112,8 +114,8 @@ public class PlayerController : MonoBehaviour
         {
             GetDeck(to).AddCardsToDeck(GetDeck(from).Draw(numToDraw));
         }
-        if (PlayerControlled)
-            UIManager.Instance.UpdateDisplays();
+        //if (PlayerControlled)
+        //    UIManager.Instance.UpdateDisplays();
     }
     
     public void DiscardHand()
@@ -124,8 +126,8 @@ public class PlayerController : MonoBehaviour
             GetDeck(DeckType.PlayerGrave).AddCardsToDeck(GetDeck(DeckType.PlayerHand).Draw(1)); //Move all the cards in hand to the grave
             UIManager.Instance.SendCardToGrave(GetDeck(DeckType.PlayerGrave).m_CardsInDeck[GetDeck(DeckType.PlayerGrave).CardsInDeck() - 1].cardObj);
         }
-        if (PlayerControlled)
-            UIManager.Instance.UpdateDisplays();
+        //if (PlayerControlled)
+        //    UIManager.Instance.UpdateDisplays();
     }
 
     /// <summary>
@@ -148,6 +150,12 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         return null;
+    }
+
+    public void RunAI()
+    {
+        //This is where we call the enemy AI to have them perform actions
+        AI.PlayMove(this);
     }
 
     #region Debug
