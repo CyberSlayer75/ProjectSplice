@@ -124,7 +124,7 @@ public class BattleManager : MonoBehaviour
         currentPlayerTurn.DrawCards(3, PlayerController.DeckType.PlayerDeck, PlayerController.DeckType.PlayerHand);
 
         //Update Buffs
-        BuffManager.Instance.ApplyAllBuffEffects();
+        BuffManager.Instance.ApplyAllBuffEffects(currentPlayerTurn);
 
         while(!playerEndTurn)
         {
@@ -144,7 +144,7 @@ public class BattleManager : MonoBehaviour
         }
 
         //Update Debuffs
-        DebuffManager.Instance.ApplyAllDebuffEffects();
+        DebuffManager.Instance.ApplyAllDebuffEffects(currentPlayerTurn);
 
         //Swap turn to other player
         int nextPlayer = activePlayers.IndexOf(currentPlayerTurn);

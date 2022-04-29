@@ -17,8 +17,14 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    public void ApplyAllBuffEffects()
+    public void ApplyAllBuffEffects(PlayerController player)
     {
+        for(int i = 0; i <  player.Stats().m_Statuses.Count; i++)
+        {
+            if((player.Stats().m_Statuses[i] as Status).m_StatusType == Status.StatusType.Buff)
+            {
 
+            }
+        }
     }
 }

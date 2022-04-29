@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -84,9 +85,9 @@ public class Card
                     for(int b = 0; b < data.CardEffects[i].buffs.Count; b++)
                     {
                         if (data.CardEffects[i].buffs[b].count > 0) //If positive number gain the buff
-                            pc.Stats().GainBuff(data.CardEffects[i].buffs[b].buff, data.CardEffects[i].buffs[b].count);
-                        else //if negative then lose the buff
-                            pc.Stats().LoseBuff(data.CardEffects[i].buffs[b].buff, data.CardEffects[i].buffs[b].count);
+                        {
+                            pc.Stats().GainStatus(data.CardEffects[i].buffs[b].buff, data.CardEffects[i].buffs[b].count);
+                        }
                     }
                 }
                 if (data.CardEffects[i].debuffs != null) //Player gets or loses Debuffs
@@ -94,9 +95,9 @@ public class Card
                     for (int b = 0; b < data.CardEffects[i].debuffs.Count; b++)
                     {
                         if (data.CardEffects[i].debuffs[b].count > 0) //If positive number gain the buff
-                            pc.Stats().GainDebuff(data.CardEffects[i].debuffs[b].debuff, data.CardEffects[i].debuffs[b].count);
-                        else //if negative then lose the buff
-                            pc.Stats().LoseDebuff(data.CardEffects[i].debuffs[b].debuff, data.CardEffects[i].debuffs[b].count);
+                        {
+                            pc.Stats().GainStatus(data.CardEffects[i].debuffs[b].debuff, data.CardEffects[i].debuffs[b].count);
+                        }
                     }
                 }
                 //TODO: This is where unique buffs will go
@@ -178,17 +179,18 @@ public class Card
                 }
             case CardEffects.ConditionalEffect.ConTarget.Buff:
                 {
-                    return target.Stats().ReturnBuffStatus(conEffect.buffStatus);
+                    return target.Stats().ReturnStatus(conEffect.buffStatus);
                 }
             case CardEffects.ConditionalEffect.ConTarget.Debuff:
                 {
-                    return target.Stats().ReturnDebuffStatus(conEffect.debuffStatus);
+                    return target.Stats().ReturnStatus(conEffect.debuffStatus);
                 }
             case CardEffects.ConditionalEffect.ConTarget.Unique:
                 {
-                    return target.Stats().ReturnUniqueStatus(conEffect.uniqueStatus);
+                    return target.Stats().ReturnStatus(conEffect.uniqueStatus);
                 }
         }
         return 0;
     }
+
 }

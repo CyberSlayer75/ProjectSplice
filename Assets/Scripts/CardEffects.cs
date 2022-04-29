@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Reflection;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using NaughtyAttributes;
 
@@ -8,7 +10,7 @@ public class CardEffects
 {
     public enum TargetingType { None, Self, SingleEnemy, RandomEnemy, MultipleEnemies, AllEnemies };
     public enum AmountType { None, Fixed, AllEnergy, AllBuff, AllDebuff, BasedOnEnergy, BasedOnBuff, BasedOnDebuff, BasedOnEnemyBuff, BasedOnEnemyDebuff, BasedOnOtherCards };
-    
+
 
     public TargetingType target;
     public bool conditional;
@@ -33,20 +35,35 @@ public class CardEffects
     [System.Serializable]
     public class DebuffCommand
     {
-        public PlayerStats.DebuffStatus debuff;
+        [Dropdown("GetStatuses")]
+        public string debuff;
         public int count;
+        private DropdownList<string> GetStatuses()
+        {
+            return CardEffects.GetStatuses();
+        }
     }
     [System.Serializable]
     public class BuffCommand
     {
-        public PlayerStats.BuffStatus buff;
+        [Dropdown("GetStatuses")]
+        public string buff;
         public int count;
+        private DropdownList<string> GetStatuses()
+        {
+            return CardEffects.GetStatuses();
+        }
     }
     [System.Serializable]
     public class UniqueCommand
     {
-        public PlayerStats.UniqueStatus buff;
+        [Dropdown("GetStatuses")]
+        public string buff;
         public int count;
+        private DropdownList<string> GetStatuses()
+        {
+            return CardEffects.GetStatuses();
+        }
     }
     [System.Serializable]
     public class ConditionalEffect
@@ -58,14 +75,18 @@ public class CardEffects
         public int countOf;
         public ConTarget conTarget;
         [ShowIf("conTarget", ConTarget.Buff)]
-        [AllowNesting]
-        public PlayerStats.BuffStatus buffStatus;
+        [Dropdown("GetStatuses")]
+        public string buffStatus;
         [ShowIf("conTarget", ConTarget.Debuff)]
-        [AllowNesting]
-        public PlayerStats.DebuffStatus debuffStatus;
+        [Dropdown("GetStatuses")]
+        public string debuffStatus;
         [ShowIf("conTarget", ConTarget.Unique)]
-        [AllowNesting]
-        public PlayerStats.UniqueStatus uniqueStatus;
+        [Dropdown("GetStatuses")]
+        public string uniqueStatus;
+        private DropdownList<string> GetStatuses()
+        {
+            return CardEffects.GetStatuses();
+        }
     }
     [System.Serializable]
     public class DamageModifier
@@ -94,5 +115,21 @@ public class CardEffects
         [ShowIf("modConditional")]
         [AllowNesting]
         public ConditionalEffect conditionalStatement;
+    }
+    public static DropdownList<string> GetStatuses()
+    {
+        NaughtyAttributes.DropdownList<string> stringList = new DropdownList<string>();
+        var assem = (
+                from domainAssembly in System.AppDomain.CurrentDomain.GetAssemblies()
+                    // alternative: from domainAssembly in domainAssembly.GetExportedTypes()
+                    from assemblyType in domainAssembly.GetTypes()
+                where typeof(Status).IsAssignableFrom(assemblyType) && !assemblyType.IsAbstract
+                    // alternative: where assemblyType.IsSubclassOf(typeof(B))
+                    select assemblyType).ToArray();
+        for (int i = 0; i < assem.Count(); i++)
+        {
+            stringList.Add(assem[i].ToString(), assem[i].FullName);
+        }
+        return stringList;
     }
 }
